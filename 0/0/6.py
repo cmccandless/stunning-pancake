@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# https://projecteuler.net/problem=6
 
 
 def square_of_sum(n):

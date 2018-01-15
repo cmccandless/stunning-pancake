@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# https://projecteuler.net/problem=8
+
+
 from functools import reduce
 from operator import mul
 

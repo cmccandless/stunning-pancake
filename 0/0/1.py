@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# https://projecteuler.net/problem=1
+
+
 def mults_of(n, under):
     return {x for x in range(n, under, n)}
 

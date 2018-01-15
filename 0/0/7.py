@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# https://projecteuler.net/problem=7
+
+
 def sieve(limit=1000000):
     notPrime = set()
     for x in range(2, limit):

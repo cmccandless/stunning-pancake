@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # https://projecteuler.net/problem=6
+import unittest
 
 
 def square_of_sum(n):
@@ -15,9 +16,21 @@ def difference(n):
     return square_of_sum(n) - sum_of_squares(n)
 
 
+def answer():
+    return difference(100)
+
+
 def run():
-    print(difference(100))
-    
+    print(answer())
+
+
+class Test6(unittest.TestCase):
+    def test_expected(self):
+        with open('../../answers.txt') as f:
+            expected = int(f.readlines()[6])
+        # expected = 25164150
+        self.assertEqual(answer(), expected)
+
 
 if __name__ == '__main__':
     run()

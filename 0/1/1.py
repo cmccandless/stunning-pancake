@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # https://projecteuler.net/problem=11
+import unittest
 from functools import reduce
 from operator import mul
 
@@ -25,7 +26,7 @@ data = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"""
 
 
-def run():
+def answer():
     grid = [
         [int(x) for x in line.split(' ')]
         for line in data.split('\n')
@@ -56,7 +57,19 @@ def run():
                     )
                 ),
             )
-    print(best)
+    return best
+
+
+def run():
+    print(answer())
+
+
+class Test11(unittest.TestCase):
+    def test_expected(self):
+        with open('../../answers.txt') as f:
+            expected = int(f.readlines()[11])
+        # expected = 70600674
+        self.assertEqual(answer(), expected)
 
 
 if __name__ == '__main__':

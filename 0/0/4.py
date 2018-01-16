@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # https://projecteuler.net/problem=4
+import unittest
 
 
 def is_palindrome(num):
@@ -21,9 +22,21 @@ def largest_palindrom_product(digits):
     return best
 
 
+def answer():
+    return largest_palindrom_product(2)[0]
+
+
 def run():
-    print(largest_palindrom_product(2))[0]
-    
+    print(answer())
+
+
+class Test4(unittest.TestCase):
+    def test_expected(self):
+        with open('../../answers.txt') as f:
+            expected = int(f.readlines()[4])
+        # expected = 9009
+        self.assertEqual(answer(), expected)
+
 
 if __name__ == '__main__':
     run()

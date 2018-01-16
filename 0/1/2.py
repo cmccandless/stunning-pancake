@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # https://projecteuler.net/problem=12
+import unittest
 from math import sqrt
 
 factors_of = {}
@@ -28,15 +29,26 @@ def factor(n):
     return factors
 
 
-def run():
+def answer():
     target = 500
     tri_gen = triangle_numbers()
     while True:
         x = next(tri_gen)
         factors = factor(x)
         if len(factors) > target:
-            print(x)
-            return
+            return x
+
+
+def run():
+    print(answer())
+
+
+class Test12(unittest.TestCase):
+    def test_expected(self):
+        with open('../../answers.txt') as f:
+            expected = int(f.readlines()[12])
+        # expected = 76576500
+        self.assertEqual(answer(), expected)
 
 
 if __name__ == '__main__':

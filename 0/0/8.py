@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # https://projecteuler.net/problem=8
-
-
+import unittest
 from functools import reduce
 from operator import mul
 
@@ -29,15 +28,25 @@ data = (
 )
 
 
-def run():
+def answer():
     num_digits = 13
     nums = [int(ch) for ch in data if ch != '\n']
-    print(
-        max(
-            reduce(mul, nums[i:i + num_digits])
-            for i in range(len(nums) - num_digits + 1)
-        )
+    return max(
+        reduce(mul, nums[i:i + num_digits])
+        for i in range(len(nums) - num_digits + 1)
     )
+
+
+def run():
+    print(answer())
+
+
+class Test8(unittest.TestCase):
+    def test_expected(self):
+        with open('../../answers.txt') as f:
+            expected = int(f.readlines()[8])
+        # expected = 23514624000
+        self.assertEqual(answer(), expected)
 
 
 if __name__ == '__main__':

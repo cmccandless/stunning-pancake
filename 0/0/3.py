@@ -7,7 +7,7 @@ from math import sqrt
 def answer():
     target = 600851475143
     notPrime = set()
-    limit = round(sqrt(target))
+    limit = int(round(sqrt(target)))
     i = 1
     while target > 1 and i < limit:
         i += 2

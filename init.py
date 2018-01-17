@@ -13,9 +13,6 @@ if __name__ == '__main__':
     if not os.path.isdir(dpath):
         os.makedirs(dpath)
 
-    with open('answers.txt', 'a') as f:
-        f.write('ANSWER_FOR_{}\n'.format(exercise))
-
     with open(os.path.join(*exercise) + '.py', 'w') as f:
         f.write("""#!/usr/bin/env python
 # https://projecteuler.net/problem={0}
@@ -32,8 +29,7 @@ def run():
 
 class Test{0}(unittest.TestCase):
     def test_expected(self):
-        with open('../../answers.txt') as f:
-            expected = int(f.readlines()[{0}])
+        expected = 'FILL IN ANSWER ONCE ACCEPTED'
         self.assertEqual(answer(), expected)
 
 

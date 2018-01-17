@@ -14,8 +14,7 @@ def run():
 
 class Test16(unittest.TestCase):
     def test_expected(self):
-        with open('../../answers.txt') as f:
-            expected = int(f.readlines()[16])
+        expected = 1366
         self.assertEqual(answer(), expected)
 
 

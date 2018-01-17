@@ -37,7 +37,10 @@ def answer(data=__data__):
     for line in data[1:]:
         sums = (
             [sums[0] + line[0]] +
-            [line[i] + max(sums[i - 1:i + 1]) for i in range(1, len(line) - 1)] +
+            [
+                line[i] + max(sums[i - 1:i + 1])
+                for i in range(1, len(line) - 1)
+            ] +
             [sums[-1] + line[-1]]
         )
     return max(sums)
@@ -50,8 +53,7 @@ def run():
 
 class Test18(unittest.TestCase):
     def test_expected(self):
-        with open('../../answers.txt') as f:
-            expected = int(f.readlines()[18])
+        expected = 1074
         self.assertEqual(answer(), expected)
 
 

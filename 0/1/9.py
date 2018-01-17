@@ -45,30 +45,8 @@ def run():
 
 
 class Test19(unittest.TestCase):
-    def test_step_1900_1_1_1(self):
-        self.assertEqual(step(1900, 1, 1, 1), (1900, 1, 2, 2))
-
-    def test_step_1900_1_1_30_2(self):
-        self.assertEqual(step(1900, 1, 30, 2), (1900, 1, 31, 3))
-
-    def test_step_1900_1_1_31_3(self):
-        self.assertEqual(step(1900, 1, 31, 3), (1900, 2, 1, 4))
-
-    def test_step_1900_2_28_2(self):
-        self.assertEqual(step(1900, 2, 28, 2), (1900, 3, 1, 3))
-
-    def test_step_1901_2_28_2(self):
-        self.assertEqual(step(1901, 2, 28, 2), (1901, 3, 1, 3))
-
-    def test_step_1904_2_28_2(self):
-        self.assertEqual(step(1904, 2, 28, 2), (1904, 2, 29, 3))
-
-    def test_step_1900_12_31_6(self):
-        self.assertEqual(step(1900, 12, 31, 6), (1901, 1, 1, 0))
-
     def test_expected(self):
-        with open('../../answers.txt') as f:
-            expected = int(f.readlines()[19])
+        expected = 171
         self.assertEqual(answer(), expected)
 
 

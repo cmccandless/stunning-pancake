@@ -66,9 +66,7 @@ def run():
 
 class Test11(unittest.TestCase):
     def test_expected(self):
-        with open('../../answers.txt') as f:
-            expected = int(f.readlines()[11])
-        # expected = 70600674
+        expected = 70600674
         self.assertEqual(answer(), expected)
 
 

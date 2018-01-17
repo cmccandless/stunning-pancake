@@ -5,7 +5,8 @@ import unittest
 
 def sieve(limit=1000000):
     notPrime = set()
-    for x in range(2, limit):
+    yield 2
+    for x in range(3, limit, 2):
         if x in notPrime:
             continue
         yield x
@@ -23,9 +24,7 @@ def run():
 
 class Test10(unittest.TestCase):
     def test_expected(self):
-        with open('../../answers.txt') as f:
-            expected = int(f.readlines()[10])
-        # expected = 142913828922
+        expected = 142913828922
         self.assertEqual(answer(), expected)
 
 

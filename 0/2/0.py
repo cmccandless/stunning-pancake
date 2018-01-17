@@ -14,14 +14,13 @@ def answer(n=100):
 
 
 def run():
-    print(answer(10)) # 27
+    print(answer(10))  # 27
     print(answer())
 
 
 class Test20(unittest.TestCase):
     def test_expected(self):
-        with open('../../answers.txt') as f:
-            expected = int(f.readlines()[20])
+        expected = 648
         self.assertEqual(answer(), expected)
 
 

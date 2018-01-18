@@ -54,8 +54,8 @@ def answer(target=200, coins=[1, 2, 5, 10, 20, 50, 100, 200]):
     #         answer(x, coins)
     #         for x in range(target, -1, -coin)
     #     )
-    # elif len(coins) == 1:
-    #     return 1 if target % coins[0] == 0 else 0
+    # elif len(coins) == 1 and target % coins[0] == 0:
+    #     return 1
     # else:
     #     return 0
 

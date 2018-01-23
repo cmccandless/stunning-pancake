@@ -17,7 +17,7 @@ def add_coin(combo, coin):
 def answer(target=200, coins=[1, 2, 5, 10, 20, 50, 100, 200]):
     # Author: cmccandless
     # Runtime: ~33s
-    # counts = [set() for _ in range(target + 1)] 
+    # counts = [set() for _ in range(target + 1)]
     # for i in range(1, len(counts)):
     #     for c in coins:
     #         if c == i:

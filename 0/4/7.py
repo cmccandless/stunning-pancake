@@ -36,7 +36,7 @@ def answer():
         if len(pfs) == limit:
             nums.append(n)
         else:
-            nums.clear()
+            nums = []
     print(nums)
     return nums[0]
 

@@ -5,6 +5,7 @@ from math import floor
 from fractions import gcd
 from functools import reduce
 from operator import mul
+from __future__ import division
 
 
 def answer():

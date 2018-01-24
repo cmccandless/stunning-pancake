@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # https://projecteuler.net/problem=33
 import unittest
-from math import gcd, floor
+from math import floor
+from fractions import gcd
 from functools import reduce
 from operator import mul
 

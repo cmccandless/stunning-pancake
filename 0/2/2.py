@@ -4,11 +4,17 @@ import unittest
 import os
 
 
+import sys
+if sys.version_info[0] < 3:
+    FILE_NOT_FOUND = IOError
+else:
+    FILE_NOT_FOUND = OSError
+
 try:
     fname = os.path.join('data', 'p022_names.txt')
     with open(fname):
         pass
-except OSError:
+except FILE_NOT_FOUND:
     fname = os.path.join('..', '..', fname)
 
 

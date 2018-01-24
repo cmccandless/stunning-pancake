@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-# https://projecteuler.net/problem=2
+# https://projecteuler.net/problem=25
 import unittest
-from itertools import takewhile
 
 
 def fibon():
     a = 1
-    b = 2
+    b = 1
+    yield 0
     yield a
     yield b
     while True:
@@ -16,24 +16,22 @@ def fibon():
         b = c
 
 
-def answer():
-    limit = 4000000
-    return sum(filter(
-        lambda x: x % 2 == 0,
-        takewhile(
-            lambda x: x < limit,
-            fibon()
-        )
-    ))
+def answer(ndigits=1000):
+    f = enumerate(fibon())
+    index, x = next(f)
+    while len(str(x)) < ndigits:
+        index, x = next(f)
+    return index
 
 
 def run():
+    # print(answer(3))
     print(answer())
 
 
-class Test2(unittest.TestCase):
+class Test25(unittest.TestCase):
     def test_expected(self):
-        expected = 4613732
+        expected = 4782
         self.assertEqual(answer(), expected)
 
 

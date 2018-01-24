@@ -1,14 +1,33 @@
 #!/usr/bin/env python
 # https://projecteuler.net/problem=5
 import unittest
+from itertools import groupby
+from functools import reduce
 
 
-def smallest_divisible(max, min=1):
-    i = max
-    while True:
-        if all(i % x == 0 for x in range(min, max + 1)):
-            return i
-        i += max
+def prime_factors(n):
+    not_prime = {0, 1}
+    limit = n + 1
+    for x in range(2, limit):
+        if x in not_prime:
+            continue
+        while n >= x and n % x == 0:
+            yield x
+            n /= x
+        if n == 1:
+            raise StopIteration()
+        for y in range(x + x, limit, x):
+            not_prime.add(y)
+
+
+def smallest_divisible(max_divisor, min_divisor=2):
+    m = {}
+    for n in range(min_divisor, max_divisor + 1):
+        fs = prime_factors(n)
+        for k, g in groupby(fs):
+            m[k] = max(m.get(k, 0), len(list(g)))
+    print(m)
+    return reduce(lambda a, t: a * pow(*t), m.items(), 1)
 
 
 def answer():
@@ -21,9 +40,7 @@ def run():
 
 class Test5(unittest.TestCase):
     def test_expected(self):
-        with open('../../answers.txt') as f:
-            expected = int(f.readlines()[5])
-        # expected = 232792560
+        expected = 232792560
         self.assertEqual(answer(), expected)
 
 

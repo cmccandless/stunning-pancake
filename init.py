@@ -16,6 +16,7 @@ if __name__ == '__main__':
     with open(os.path.join(*exercise) + '.py', 'w') as f:
         f.write("""#!/usr/bin/env python
 # https://projecteuler.net/problem={0}
+# Discussion: https://projecteuler.net/thread={0}
 import unittest
 
 

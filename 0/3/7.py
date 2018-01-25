@@ -3,38 +3,30 @@
 import unittest
 
 
-def sieve(limit=1000000):
-    yield 2
-    not_prime = set()
-    for x in range(3, limit, 2):
-        if x in not_prime:
-            continue
-        yield x
+def answer(limit=1000000):
+    total = 0
+    not_prime = {1}
+    for x in [3, 5, 7]:
         for y in range(x + x, limit, x):
             not_prime.add(y)
-
-
-primes = set(sieve())
-
-
-def truncatable(prime):
-    p = prime
-    c = 0
-    pow10 = 0
-    while p > 0:
-        if p not in primes:
-            return False
-        p, q = divmod(p, 10)
-        c = q * pow(10, pow10) + c
-        if c not in primes:
-            return False
-        pow10 += 1
-    return True
-
-
-def answer(limit=1000000):
-    primes = list(sieve(limit))
-    return sum(filter(truncatable, primes[4:]))
+    for x in range(11, limit, 2):
+        if x in not_prime:
+            continue
+        p, c = divmod(x, 10)
+        pow10 = 0
+        while (
+            p & c & 1 and
+            p not in not_prime and
+            c not in not_prime
+        ):
+            pow10 += 1
+            p, q = divmod(p, 10)
+            c = q * pow(10, pow10) + c
+        if (p == 0 or p == 2) and c not in not_prime:
+            total += x
+        for y in range(x + x, limit, x):
+            not_prime.add(y)
+    return total
 
 
 def run():

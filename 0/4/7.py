@@ -3,7 +3,7 @@
 import unittest
 
 
-def sieve(limit=100000):
+def sieve(limit=680):
     yield 2
     np = set()
     for x in range(3, limit, 2):
@@ -14,31 +14,40 @@ def sieve(limit=100000):
             np.add(y)
 
 
-primes = list(sieve())
+# primes = list(sieve())
+primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 31, 47, 83, 491, 677]
+p_set = set(primes)
 
 
 def prime_factors(n):
     for p in primes:
         if n == 1:
             break
-        while n % p == 0:
+        elif n in p_set:
+            yield n
+            break
+        elif n % p == 0:
             yield p
-            n //= p
+            while n % p == 0:
+                n //= p
 
 
 def answer():
-    nums = []
-    limit = 4
+    remaining = limit = 4
+    num = 0
     n = 646
-    while len(nums) < limit:
+    used = set()
+    while remaining != 0:
         n += 1
         pfs = set(prime_factors(n))
+        used = used.union(pfs)
         if len(pfs) == limit:
-            nums.append(n)
+            if remaining == limit:
+                num = n
+            remaining -= 1
         else:
-            nums = []
-    print(nums)
-    return nums[0]
+            remaining = limit
+    return num
 
 
 def run():

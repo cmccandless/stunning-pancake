@@ -2,23 +2,28 @@
 # https://projecteuler.net/problem=23
 import unittest
 from math import sqrt
-
-
-def is_abundant(n):
-    divs = {1}
-    for i in range(2, int(sqrt(n)) + 1):
-        if n % i == 0:
-            divs.add(i)
-            divs.add(n // i)
-    return n < sum(divs)
+from itertools import takewhile
 
 
 def answer():
     limit = 28124
-    abundant = set(filter(is_abundant, range(12, limit)))
-    return sum(
-        x for x in range(1, limit)
-        if all(x - a not in abundant for a in abundant)
+    result_limit = 20162
+    abundant = [
+        n for n in range(12, limit)
+        if n <= sum({
+            f
+            for i in range(2, int(sqrt(n)) + 1)
+            if n % i == 0
+            for f in (i, n // i)
+        })
+    ]
+    s_abundant = set(abundant)
+    return 276 + sum(
+        x for x in range(25, result_limit)
+        if all(
+            x - a not in s_abundant
+            for a in takewhile(x.__gt__, abundant)
+        )
     )
 
 

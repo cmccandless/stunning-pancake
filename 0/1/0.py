@@ -3,19 +3,17 @@
 import unittest
 
 
-def sieve(limit=1000000):
-    notPrime = set()
-    yield 2
-    for x in range(3, limit, 2):
-        if x in notPrime:
-            continue
-        yield x
-        for i in range(x, limit, x):
-            notPrime.add(i)
-
-
 def answer():
-    return sum(sieve(2000000))
+    total = 2
+    limit = 2000000
+    np = set()
+    for x in range(3, limit, 2):
+        if x in np:
+            continue
+        total += x
+        for i in range(x + x, limit, x):
+            np.add(i)
+    return total
 
 
 def run():

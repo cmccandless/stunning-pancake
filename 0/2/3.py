@@ -22,7 +22,7 @@ def answer():
         x for x in range(25, result_limit)
         if all(
             x - a not in s_abundant
-            for a in takewhile(x.__gt__, abundant)
+            for a in takewhile(lambda a: x > a, abundant)
         )
     )
 

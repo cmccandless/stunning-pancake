@@ -8,7 +8,7 @@ try:
 except IndexError:
     limit = 1.0
 
-rgxTest = re.compile('.*Test(\d+).*')
+rgxTest = re.compile('.*Test(\d+).*(PASSED|FAILED)')
 rgxTime = re.compile('.*(\d+\.\d+) seconds.*')
 
 ret_OK = True
@@ -20,17 +20,23 @@ try:
         m = rgxTest.match(line)
         if m:
             testno = int(m.group(1))
+            result = m.group(2)
             next(lines)  # Skip blank line
             line = next(lines)
             m = rgxTime.match(line)
             if m:
                 time = m.group(1)
                 OK = float(time) < limit
+                if result == 'PASSED':
+                    if not OK:
+                        result = 'TOO_LONG'
+                else:
+                    OK = False
                 print(
                     'Test{:03d}'.format(testno),
                     time,
                     'seconds',
-                    'PASS' if OK else 'FAIL'
+                    result
                 )
                 ret_OK = ret_OK and OK
 except StopIteration:

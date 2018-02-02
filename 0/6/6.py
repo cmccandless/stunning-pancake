@@ -36,7 +36,7 @@ def run():
 
 class Test66(unittest.TestCase):
     def test_expected(self):
-        expected = 'FILL IN ANSWER ONCE ACCEPTED'
+        expected = 661
         self.assertEqual(answer(), expected)
 
 

@@ -9,12 +9,10 @@ def sieve(limit=10000):
         if x in not_prime:
             continue
         yield x
-        for y in range(x + x, limit, x):
-            not_prime.add(y)
+        not_prime.update(range(x + x, limit, x))
 
 
 def mult_order(n):
-    # print(n)
     x = 10
     k = 1
     while x % n != 1:
@@ -25,11 +23,9 @@ def mult_order(n):
 
 def answer(limit=1000):
     primes = list(sieve(limit))[3:]
-    length, longest = max(
+    return max(
         zip(map(mult_order, primes), primes)
-    )
-    # print(length)
-    return longest
+    )[1]
 
 
 def run():

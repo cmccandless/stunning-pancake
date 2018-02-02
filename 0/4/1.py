@@ -11,8 +11,7 @@ def sieve(limit=100000):
         if i in not_prime:
             continue
         yield i
-        for j in range(i + i, limit, i):
-            not_prime.add(j)
+        not_prime.update(range(i + i, limit, i))
 
 
 def answer():

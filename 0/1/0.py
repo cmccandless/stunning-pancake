@@ -11,8 +11,7 @@ def answer():
         if x in np:
             continue
         total += x
-        for i in range(x + x, limit, x):
-            np.add(i)
+        np.update(range(x + x, limit, x))
     return total
 
 

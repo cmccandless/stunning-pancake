@@ -3,7 +3,6 @@
 # Discussion: https://projecteuler.net/thread=61
 import unittest
 from itertools import dropwhile, takewhile
-from functools import reduce
 
 
 def polygonal(f):

@@ -10,8 +10,7 @@ def sieve(limit=680):
         if x in np:
             continue
         yield x
-        for y in range(x + x, limit, x):
-            np.add(y)
+        np.update(range(x + x, limit, x))
 
 
 # primes = list(sieve())

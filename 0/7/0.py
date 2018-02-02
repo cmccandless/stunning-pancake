@@ -11,8 +11,7 @@ def sieve(limit=5000, minimum=2000):
             continue
         if x > minimum:
             yield x
-        for y in range(x + x, limit, x):
-            np.add(y)
+        np.update(range(x + x, limit, x))
 
 
 def answer():

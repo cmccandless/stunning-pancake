@@ -26,44 +26,44 @@ def is_prime(n, k=16):
     for p in _known_primes:
         if n % p == 0:
             return False
-    d, s = n - 1, 0
+    m = n - 1
+    d, s = m, 0
     while d & 1 == 0:
         d, s = (d >> 1, s + 1)
 
-    # Returns exact according to http://primes.utm.edu/prove/prove2_3.html
-    for a in (2, 3):
-        if pow(a, d, n) == 1:
-            continue
-        is_composite = True
-        for i in range(s):
-            if pow(a, (1 << i) * d, n) == n - 1:
-                is_composite = False
-                break
-        if is_composite:
+    if pow(2, d, n) != 1:
+        i = 0
+        while i < s and pow(2, (1 << i) * d, n) != m:
+            i += 1
+        if i == s:
             return False
     return True
 
 
 def answer():
+    mod10 = {1, 3, 7, 9}
     primes_with_str = [
         (i, str(p), p)
-        for i, p in enumerate(sieve(10000))
-    ]
-    primes_with_str.pop(0)
+        for i, p in enumerate(
+            p for p in sieve(8390)
+            if p % 10 in mod10
+        )
+    ][3:]
     c_able = {
-        pa: {
-            pb for _, sb, pb in primes_with_str[i:]
+        a: {
+            b for _, sb, b in primes_with_str[i:]
             if is_prime(int(sa + sb)) and is_prime(int(sb + sa))
         }
-        for i, sa, pa in primes_with_str
+        for i, sa, a in primes_with_str
     }
+    # 13 5197 5701 6733 8389
     return next(
-        pa + pb + pc + pd + pe
-        for pa, ca in ((pa, c_able[pa]) for pa in c_able)
-        for pb, cab in ((pb, ca.intersection(c_able[pb])) for pb in ca)
-        for pc, cabc in ((pc, cab.intersection(c_able[pc])) for pc in cab)
-        for pd, cabcd in ((pd, cabc.intersection(c_able[pd])) for pd in cabc)
-        for pe in cabcd
+        a + b + c + d + e
+        for a, ca in c_able.items()
+        for b, cab in ((b, ca.intersection(c_able[b])) for b in ca)
+        for c, cabc in ((c, cab.intersection(c_able[c])) for c in cab)
+        for d, cabcd in ((d, cabc.intersection(c_able[d])) for d in cabc)
+        for e in cabcd
     )
 
 

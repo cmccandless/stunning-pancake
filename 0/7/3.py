@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # https://projecteuler.net/problem=73
 # Discussion: https://projecteuler.net/thread=73
+from __future__ import division
 import unittest
 
 

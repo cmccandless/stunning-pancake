@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # https://projecteuler.net/problem=72
 # Discussion: https://projecteuler.net/thread=72
-import unittest
+from __future__ import division
+importimport unittest
 
 
 def answer(limit=1000000):
@@ -10,7 +11,7 @@ def answer(limit=1000000):
     totient[1] = 0
     totient[2] = 1
     for y in range(4, limit, 2):
-        totient[y] /= 2
+        totient[y] >>= 1
     for x in range(3, limit, 2):
         if totient[x] == x:
             totient[x] -= 1

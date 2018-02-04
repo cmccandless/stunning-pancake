@@ -4,43 +4,42 @@ import unittest
 from itertools import combinations
 
 
-def sieve(limit=1000000):
-    yield 2
+def answer(members=8):
+    limit = 1000000
     np = set()
     for x in range(3, limit, 2):
         if x in np:
             continue
-        yield x
         for y in range(x + x, limit, x):
             np.add(y)
-
-
-primes = list(sieve())
-p_set = set(primes)
-
-
-def answer(members=8):
-    for p in primes:
+    for p in range(3, limit, 2):
+        if p in np:
+            continue
         s_p = str(p)
-        num_digits = len(s_p)
-        for i in range(1, num_digits):
+        num_digits = len(s_p) - 1
+        for i in range(3, num_digits - 1):
             for c in combinations(range(num_digits), i):
                 family_count = members
                 base_prime = None
-                for d in '9876543210':
-                    if 0 in c and d == '0':
-                        continue
-                    new_n = int(''.join(
-                        d if j in c else ch for j, ch in enumerate(s_p)
-                    ))
-                    if new_n in p_set:
+                new_n = inc = 0
+                for j, d in enumerate(s_p):
+                    new_n *= 10
+                    inc *= 10
+                    if j in c:
+                        new_n += 9
+                        inc += 1
+                    else:
+                        new_n += int(d)
+                for d in range(10, 1 if 0 in c else 0, -1):
+                    if new_n & 1 and new_n not in np:
                         family_count -= 1
                         base_prime = new_n
                         if family_count == 0:
                             return base_prime
                     # Not enough remaining members to check, so move on
-                    elif family_count > int(d) + 1:
+                    elif family_count > d:
                         break
+                    new_n -= inc
 
 
 def run():

@@ -10,16 +10,17 @@ def is_pentagonal(x):
 
 def answer():
     pentagonals = []
+    p_set = set()
     i = 1
     while True:
         i += 1
         n = ((3 * i - 1) * i) // 2
         for m in pentagonals:
             d = n - m
-            # if is_pentagonal(d) and is_pentagonal(n + m):
-            if d in pentagonals and is_pentagonal(n + m):
+            if d in p_set and is_pentagonal(n + m):
                 return d
         pentagonals.insert(0, n)
+        p_set.add(n)
 
 
 def run():

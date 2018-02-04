@@ -3,30 +3,26 @@
 import unittest
 
 
-def answer():
-    limit = 1000000
+def answer(limit=1000000):
     collatz = {1: 0}
     longest = 2
     longest_chain = 1
     for i in range(3, limit, 2):
         x = (3 * i + 1) >> 1
         chain = 3
-        while x != 1:
+        while True:
             if x & 1:
+                if x < i:
+                    break
                 x = 3 * x + 1
                 chain += 1
-            while True:
-                x //= 2
-                chain += 1
-                if x & 1:
-                    break
-            if x < i:
-                chain += collatz[x] - 1
-                break
-        if i & 1:
-            collatz[i] = chain
+            x >>= 1
+            chain += 1
+        chain += collatz[x]
+        collatz[i] = chain
         if chain > longest_chain:
-            longest, longest_chain = (i, chain)
+            longest_chain = chain
+            longest = i
     return longest
 
 

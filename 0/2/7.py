@@ -9,8 +9,7 @@ def sieve(limit=100000):
         if i in not_prime:
             continue
         yield i
-        for x in range(i + i, limit, i):
-            not_prime.add(x)
+        not_prime.update(range(i + i, limit, i))
 
 
 def quadratic_prime_generator(a, b, primes):

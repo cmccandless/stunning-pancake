@@ -2,7 +2,7 @@
 # https://projecteuler.net/problem=72
 # Discussion: https://projecteuler.net/thread=72
 from __future__ import division
-importimport unittest
+import unittest
 
 
 def answer(limit=1000000):
